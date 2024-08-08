@@ -3,7 +3,13 @@ package com.example.note.model
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-class SettingMenu(
-    @DrawableRes val icon: Int,
-    @StringRes val name: Int,
+open class SettingMenu(
+    @DrawableRes open val icon: Int,
+    @StringRes open val name: Int,
 )
+
+class ExternalSettingMenu(
+    @DrawableRes override val icon: Int,
+    @StringRes override val name: Int,
+    val url: String,
+): SettingMenu(icon, name)

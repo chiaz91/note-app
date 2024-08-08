@@ -8,17 +8,17 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.note.NoteApplication
 import com.example.note.R
 import com.example.note.data.NoteDao
-import com.example.note.model.SettingMenu
+import com.example.note.model.ExternalSettingMenu
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(private val noteDao: NoteDao) : ViewModel() {
 
     fun getMenus() = listOf(
-        SettingMenu(R.drawable.headphones, R.string.online_customer),
-        SettingMenu(R.drawable.form, R.string.user_agreement),
-        SettingMenu(R.drawable.book, R.string.privacy_policy),
-        SettingMenu(R.drawable.info, R.string.about_us),
+        ExternalSettingMenu(R.drawable.headphones, R.string.online_customer, "https://example.com/"),
+        ExternalSettingMenu(R.drawable.form, R.string.user_agreement, "https://example.com/"),
+        ExternalSettingMenu(R.drawable.book, R.string.privacy_policy, "https://example.com/"),
+        ExternalSettingMenu(R.drawable.info, R.string.about_us, "https://example.com/"),
     )
 
     fun deleteNotes() {

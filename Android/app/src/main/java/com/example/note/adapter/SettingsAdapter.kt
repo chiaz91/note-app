@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.note.databinding.ViewItemSettingsBinding
-import com.example.note.model.Note
 import com.example.note.model.SettingMenu
 
 
-class SettingsAdapter: RecyclerView.Adapter<SettingsAdapter.ViewHolder>() {
+class SettingsAdapter(private val onMenuItemClick: ((SettingMenu) -> Unit)?): RecyclerView.Adapter<SettingsAdapter.ViewHolder>() {
     private var data = listOf<SettingMenu>()
 
     fun setMenu(notes: List<SettingMenu>) {
@@ -21,7 +20,7 @@ class SettingsAdapter: RecyclerView.Adapter<SettingsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ViewItemSettingsBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding, onMenuItemClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -31,12 +30,15 @@ class SettingsAdapter: RecyclerView.Adapter<SettingsAdapter.ViewHolder>() {
 
     class ViewHolder(
         private val binding: ViewItemSettingsBinding,
-        private val onItemClick: ((Note) -> Unit)? = null
+        private val onMenuItemClick: ((SettingMenu) -> Unit)? = null
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(menu: SettingMenu) {
             binding.name.text = itemView.context.getString(menu.name)
             binding.icon.setImageResource(menu.icon)
+            binding.root.setOnClickListener {
+                onMenuItemClick?.invoke(menu)
+            }
         }
     }
 

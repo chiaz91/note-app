@@ -1,5 +1,7 @@
 package com.example.note.ui.settings
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.note.R
 import com.example.note.adapter.SettingsAdapter
 import com.example.note.databinding.FragmentSettingsBinding
-import com.example.note.databinding.FragmentSummaryBinding
+import com.example.note.model.ExternalSettingMenu
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -24,7 +26,14 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        adapter = SettingsAdapter().also {
+        adapter = SettingsAdapter {
+            if (it is ExternalSettingMenu) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setData(Uri.parse(it.url))
+                startActivity(intent)
+            }
+
+        }.also {
             it.setMenu(viewModel.getMenus())
         }
         binding = FragmentSettingsBinding.inflate(inflater)
@@ -38,9 +47,6 @@ class SettingsFragment : Fragment() {
         binding.btnDeleteNotes.setOnClickListener {
             deleteNotes()
         }
-
-
-
 
         return binding.root
     }
