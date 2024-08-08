@@ -2,18 +2,25 @@ package com.example.note.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.note.R
 import com.example.note.adapter.NotesAdapter
 import com.example.note.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels {HomeViewModel.Factory}
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: NotesAdapter
 
@@ -47,9 +54,45 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: change later
-        val data = viewModel.getDummyData()
-        adapter.setNotes(data)
+        registerMenu()
+
+        viewModel.notes.observe(viewLifecycleOwner) {
+            adapter.setNotes(it)
+        }
+    }
+
+
+    private fun registerMenu() {
+        // to add optional menu on toolbar
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.home_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_setting -> {
+                        onSettingClicked()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun onSettingClicked() {
+        // FIXME: to test only, fix me to navigate to setting later
+//        Toast.makeText(
+//            context,
+//            "setting clicked",
+//            Toast.LENGTH_SHORT
+//        ).show()
+
+        viewModel.importDummyData()
+//        viewModel.deleteAllNotes()
+
     }
 
 }

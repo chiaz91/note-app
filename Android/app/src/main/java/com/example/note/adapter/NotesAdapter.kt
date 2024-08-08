@@ -26,7 +26,8 @@ class NotesAdapter(private val onItemClick: ((Note) -> Unit)? = null ): Recycler
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = data[position]
-        holder.bind(note)
+        val shouldShowCategory = position == 0 || (data[position-1].category != note.category)
+        holder.bind(note, shouldShowCategory)
     }
 
     class ViewHolder(
@@ -34,9 +35,9 @@ class NotesAdapter(private val onItemClick: ((Note) -> Unit)? = null ): Recycler
         private val onItemClick: ((Note) -> Unit)? = null
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(note: Note) {
+        fun bind(note: Note, showCategory: Boolean) {
             binding.category.text = note.category
-            binding.headerView.visibility = View.VISIBLE
+            binding.headerView.visibility = if (showCategory) View.VISIBLE else View.GONE
             binding.content.text = if (note.content.length > 20) {
                 "${note.content.take(20)}..."
             } else {
