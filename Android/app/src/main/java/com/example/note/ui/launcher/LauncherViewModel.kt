@@ -1,4 +1,4 @@
-package com.example.note.ui.home
+package com.example.note.ui.launcher
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,11 +10,10 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.note.NoteApplication
 import com.example.note.data.NoteDao
 import com.example.note.model.Note
-import com.example.note.ui.launcher.LauncherViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(val noteDao: NoteDao) : ViewModel() {
+class LauncherViewModel(val noteDao: NoteDao) : ViewModel() {
     val notes: LiveData<List<Note>> = noteDao.getAllNotes()
 
     private val _showLoading = MutableLiveData(false)

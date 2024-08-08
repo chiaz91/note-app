@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.note.databinding.ItemNoteBinding
+import com.example.note.databinding.ViewItemNoteBinding
 import com.example.note.model.Note
 
 
@@ -20,7 +20,7 @@ class NotesAdapter(private val onItemClick: ((Note) -> Unit)? = null ): Recycler
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemNoteBinding.inflate(inflater, parent, false)
+        val binding = ViewItemNoteBinding.inflate(inflater, parent, false)
         return ViewHolder(binding, onItemClick)
     }
 
@@ -31,7 +31,7 @@ class NotesAdapter(private val onItemClick: ((Note) -> Unit)? = null ): Recycler
     }
 
     class ViewHolder(
-        private val binding: ItemNoteBinding,
+        private val binding: ViewItemNoteBinding,
         private val onItemClick: ((Note) -> Unit)? = null
     ) : RecyclerView.ViewHolder(binding.root) {
 

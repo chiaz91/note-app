@@ -3,22 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.launcher.LauncherFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_note"
+        tools:listitem="@layout/view_item_note"
         />
 
     <include
         android:id="@+id/emptyView"
         layout="@layout/view_empty_notes"
+        tools:visibility="gone"
         />
 
     <include
         android:id="@+id/loadingView"
         layout="@layout/view_loading"
+        tools:visibility="gone"
         />
 </FrameLayout>

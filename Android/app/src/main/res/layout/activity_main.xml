@@ -9,10 +9,10 @@
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/rootFragmentContainerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.note.ui.home.HomeFragment"
+        android:name="com.example.note.ui.launcher.LauncherFragment"
         />
 
 

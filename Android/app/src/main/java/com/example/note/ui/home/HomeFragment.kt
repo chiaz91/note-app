@@ -16,14 +16,16 @@ import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.note.MainActivity
 import com.example.note.R
 import com.example.note.adapter.NotesAdapter
 import com.example.note.databinding.FragmentHomeBinding
-import com.example.note.ui.add_note.AddNoteFragment
+import com.example.note.ui.launcher.LauncherViewModel
+import com.example.note.ui.settings.SettingsFragment
 
 
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by viewModels { HomeViewModel.Factory }
+    private val viewModel: LauncherViewModel by viewModels { HomeViewModel.Factory }
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: NotesAdapter
 
@@ -90,10 +92,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun onSettingClicked() {
-        // FIXME: to test only, fix me to navigate to setting later
-        parentFragmentManager.commit {
+        (requireActivity() as? MainActivity)?.supportFragmentManager?.commit {
             addToBackStack(null)
-            replace<AddNoteFragment>(R.id.fragmentContainer)
+            replace<SettingsFragment>(R.id.rootFragmentContainerView)
         }
     }
 

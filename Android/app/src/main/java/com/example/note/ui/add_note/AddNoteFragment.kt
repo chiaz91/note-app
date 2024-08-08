@@ -53,7 +53,6 @@ class AddNoteFragment : Fragment() {
         }
     }
 
-
     private fun validateInput(): String? {
         // base checks, if form become complex and has repeating checks, can create validator(s) for each input
         val content = binding.inputContent.text

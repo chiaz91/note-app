@@ -7,27 +7,38 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:visibility="gone"
+        android:padding="4dp"
         tools:visibility="visible">
 
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/book"
+            android:importantForAccessibility="no"
+            android:padding="4dp"
+            />
         <TextView
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:textStyle="bold"
             tools:text="Category" />
-    </FrameLayout>
+    </LinearLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/noteView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_white_outline_rounded_16"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/arrow"
@@ -36,9 +47,11 @@
             android:importantForAccessibility="no"
             android:padding="4dp"
             android:src="@drawable/arrow"
+            app:tint="@color/pink"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/content"

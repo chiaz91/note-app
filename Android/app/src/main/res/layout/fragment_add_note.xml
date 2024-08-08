@@ -32,6 +32,7 @@
 
     <Button
         android:id="@+id/btnSave"
+        style="@style/BaseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
@@ -44,6 +45,7 @@
     <include
         android:id="@+id/loadingView"
         layout="@layout/view_loading"
+        tools:visibility="gone"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

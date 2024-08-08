@@ -10,4 +10,19 @@
 
     <color name="black_30">#4B000000</color>
     <color name="black_60">#99000000</color>
+    <color name="white_15">#37FFFFFF</color>
+    <color name="white_30">#4BFFFFFF</color>
+    <color name="white_45">#73FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+
+    <color name="pink">#FFE4528C</color>
+    <color name="background_gradient_start">#1E2E4B</color>
+    <color name="background_gradient_mid">#3C1D45</color>
+    <color name="background_gradient_end">#391A48</color>
+    <color name="popup_gradient_start">#B134D8</color>
+    <color name="popup_gradient_end">#4125C5</color>
+    <color name="primary_color">#FF240B40</color>
+    <color name="accent_color">@color/pink</color>
+
+
 </resources>
