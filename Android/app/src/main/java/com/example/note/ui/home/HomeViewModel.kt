@@ -1,6 +1,7 @@
 package com.example.note.ui.home
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -15,12 +16,17 @@ import kotlinx.coroutines.launch
 class HomeViewModel(val noteDao: NoteDao) : ViewModel() {
     val notes: LiveData<List<Note>> = noteDao.getAllNotes()
 
+    private val _showLoading = MutableLiveData(false)
+    val showLoading: LiveData<Boolean> = _showLoading
+
 
     fun importDummyData() {
         val data = getDummyData()
+        _showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             noteDao.addAllNotes(data)
         }
+        _showLoading.value = false
     }
 
     fun deleteAllNotes() {

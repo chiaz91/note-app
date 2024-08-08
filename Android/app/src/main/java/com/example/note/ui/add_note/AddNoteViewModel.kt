@@ -1,5 +1,7 @@
 package com.example.note.ui.add_note
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -12,11 +14,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AddNoteViewModel(private val noteDao: NoteDao) : ViewModel() {
+    private val _showLoading = MutableLiveData(false)
+    val showLoading: LiveData<Boolean> = _showLoading
+
 
     fun saveNote(newNote: Note) {
+        _showLoading.value = true
         viewModelScope.launch(Dispatchers.IO ){
             noteDao.addNote(newNote)
         }
+        _showLoading.value = false
     }
 
 

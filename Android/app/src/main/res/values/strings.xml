@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Note App</string>
     <string name="setting">Setting</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Save</string>
+    <string name="error">Error</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="import_dummy">Import Dummy</string>
+
+    <string name="content_cannot_be_blank">Content cannot be blank</string>
+    <string name="content_cannot_be_more_than_n_characters">Content cannot be more than %1$d characters</string>
+    <string name="no_data_to_be_present_add_note_or_import_dummy_data">No Data to be present, add note or import dummy data</string>
 </resources>

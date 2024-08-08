@@ -16,4 +16,9 @@
         android:id="@+id/emptyView"
         layout="@layout/view_empty_notes"
         />
+
+    <include
+        android:id="@+id/loadingView"
+        layout="@layout/view_loading"
+        />
 </FrameLayout>

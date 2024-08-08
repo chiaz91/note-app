@@ -62,6 +62,10 @@ class HomeFragment : Fragment() {
             adapter.setNotes(it)
             binding.emptyView.root.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
         }
+
+        viewModel.showLoading.observe(viewLifecycleOwner) {
+            binding.loadingView.root.visibility = if (it)  View.VISIBLE else View.GONE
+        }
     }
 
 
