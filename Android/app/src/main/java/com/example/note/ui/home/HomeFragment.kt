@@ -1,4 +1,4 @@
-package com.example.note.home
+package com.example.note.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,23 +11,21 @@ import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.note.R
 import com.example.note.adapter.NotesAdapter
 import com.example.note.databinding.FragmentHomeBinding
+import com.example.note.ui.summary.SummaryFragment
 
 
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by viewModels {HomeViewModel.Factory}
+    private val viewModel: HomeViewModel by viewModels { HomeViewModel.Factory }
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: NotesAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,14 +87,10 @@ class HomeFragment : Fragment() {
 
     private fun onSettingClicked() {
         // FIXME: to test only, fix me to navigate to setting later
-//        Toast.makeText(
-//            context,
-//            "setting clicked",
-//            Toast.LENGTH_SHORT
-//        ).show()
-
-
-        viewModel.deleteAllNotes()
+        parentFragmentManager.commit {
+            addToBackStack(null)
+            replace<SummaryFragment>(R.id.fragmentContainer)
+        }
     }
 
 }

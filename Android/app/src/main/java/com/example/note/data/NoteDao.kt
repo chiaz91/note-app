@@ -18,6 +18,9 @@ interface NoteDao {
     @Query("SELECT * FROM notes ORDER BY category ASC, created DESC")
     fun getAllNotes(): LiveData<List<Note>>
 
+    @Query("SELECT * FROM notes GROUP BY category ORDER BY created DESC")
+    fun getNotesSummary(): LiveData<List<Note>>
+
     @Query("DELETE FROM notes")
     suspend fun deleteAllNotes()
 

@@ -1,4 +1,4 @@
-package com.example.note.home
+package com.example.note.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
