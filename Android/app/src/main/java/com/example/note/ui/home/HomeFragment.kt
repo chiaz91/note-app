@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.note.R
 import com.example.note.adapter.NotesAdapter
 import com.example.note.databinding.FragmentHomeBinding
-import com.example.note.ui.summary.SummaryFragment
+import com.example.note.ui.add_note.AddNoteFragment
 
 
 class HomeFragment : Fragment() {
@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
         // FIXME: to test only, fix me to navigate to setting later
         parentFragmentManager.commit {
             addToBackStack(null)
-            replace<SummaryFragment>(R.id.fragmentContainer)
+            replace<AddNoteFragment>(R.id.fragmentContainer)
         }
     }
 

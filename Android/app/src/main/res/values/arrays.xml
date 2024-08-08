@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="categories">
+        <item>Work and study</item>
+        <item>Life</item>
+        <item>Health and well</item>
+    </string-array>
+</resources>
