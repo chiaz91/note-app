@@ -12,4 +12,8 @@
         tools:listitem="@layout/item_note"
         />
 
+    <include
+        android:id="@+id/emptyView"
+        layout="@layout/view_empty_notes"
+        />
 </FrameLayout>

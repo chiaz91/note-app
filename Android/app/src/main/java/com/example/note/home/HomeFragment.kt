@@ -47,6 +47,10 @@ class HomeFragment : Fragment() {
                 orientation = LinearLayoutManager.VERTICAL
             }
         }
+        binding.emptyView.btnImportData.setOnClickListener {
+            viewModel.importDummyData()
+        }
+
 
         return binding.root
     }
@@ -58,6 +62,7 @@ class HomeFragment : Fragment() {
 
         viewModel.notes.observe(viewLifecycleOwner) {
             adapter.setNotes(it)
+            binding.emptyView.root.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
         }
     }
 
@@ -90,9 +95,8 @@ class HomeFragment : Fragment() {
 //            Toast.LENGTH_SHORT
 //        ).show()
 
-        viewModel.importDummyData()
-//        viewModel.deleteAllNotes()
 
+        viewModel.deleteAllNotes()
     }
 
 }
